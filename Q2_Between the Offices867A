@@ -1,0 +1,52 @@
+import java.util.regex.*;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main {
+    public static String Solution(String str) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < str.length(); i++) {
+            char currentChar = str.charAt(i);
+        
+            if (currentChar == 's' || currentChar == 'S') {
+                result.append('1');
+            } else {
+                result.append('0');
+            }
+        }
+
+        String replacedString = result.toString();
+        // System.out.println(replacedString);
+        
+        int scount = 0;
+        int fcount = 0;
+        
+        for (int i = 0; i < replacedString.length() - 1; i++) {
+            // System.out.println(replacedString.charAt(i));
+            if (replacedString.charAt(i) == '1') {
+                if (replacedString.charAt(i+1) == '0') {
+                    scount++;
+                }
+            } else {
+                if (replacedString.charAt(i+1) == '1') {
+                    fcount++;
+                }
+            }
+        }
+        //   System.out.println(scount);
+        //   System.out.println(fcount);
+        
+
+        return scount > fcount ? "YES" : "NO";
+    }
+
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in);
+        int n = scn.nextInt();
+        scn.nextLine();
+
+        String str = scn.nextLine();
+        System.out.println(Solution(str));
+    }
+}
